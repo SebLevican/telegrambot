@@ -1,0 +1,7 @@
+.env
+soul.mp4
+extrac.py
+main.py
+__pycache__/
+bot/
+bot/Lib/site-packages/
