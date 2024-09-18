@@ -6,6 +6,7 @@ from pose_detector import PoseDetector
 from movement_comparator import MovementComparator
 from feedback_generator import FeedbackGenerator
 import json
+import shutil
 
 
 class TelegramBot:
@@ -53,7 +54,7 @@ class TelegramBot:
         project_root = os.getcwd()
 
         # Obtener las carpetas dentro del directorio del proyecto y excluir "bot" y "__pycache__"
-        exclude_folders = ['bot', '__pycache__']
+        exclude_folders = ['bot', '__pycache__','.git']
         folders = [f for f in os.listdir(project_root) 
                 if os.path.isdir(os.path.join(project_root, f)) and f not in exclude_folders]
 
@@ -162,6 +163,11 @@ class TelegramBot:
                 await context.bot.send_message(chat_id=chat_id, text =comment)
         else:
             await context.bot.send_message(chat_id=chat_id, text='truco perfecto')
+
+        try:
+            shutil.rmtree('trick')
+        except Exception as e:
+            print(f'error al eliminar carpeta {e}')
 
         
 
